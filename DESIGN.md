@@ -20,6 +20,8 @@ colors:
   grade-scarce: "#2f7191"
   grade-rare: "#bb8a2c"
   grade-exceptional: "#bf422b"
+  loaded: "#3a76a8"
+  chambered: "#c9342a"
 typography:
   display:
     fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
@@ -155,6 +157,11 @@ Four painted stops read as a single instrument. They are selected by pool size i
 - **Brass** (`grade-rare`): 21–40 titles.
 - **Flare Red** (`grade-exceptional`): 41+ titles.
 
+### Secondary — the chamber pair
+Two painted stops that are not part of the grade ramp and never borrow from it. They encode the state of a round in a chamber, and their only job is to be told apart at a glance across the cylinder and the register at once.
+- **Chamber Blue** (`loaded`): A live round still in the chamber. The seated socket face and the register row's lamp.
+- **Chambered Red** (`chambered`): A round you already refused. The racked socket face, the racked register lamp and title, and the hot odds figure.
+
 ### Neutral
 - **Steel 900** (`steel-900`): The band well — the darkest surface, the recess the reel runs inside. Also the ink color printed on grade chips.
 - **Steel 850** (`steel-850`): Recessed troughs: the lever track interior and the scrollbar channel.
@@ -169,6 +176,8 @@ Four painted stops read as a single instrument. They are selected by pool size i
 **The Signal Reserve Rule.** Signal orange belongs to the machine, never to content. Marker, primary action, keys, active detent, focus ring, selection. If a new element wants orange to mean "good", "rare" or "won", it is asking for the grade ramp instead and the answer is no.
 
 **The Grade Triad Rule.** A grade color is never rendered in one place alone. Whenever `--grade` changes it must appear simultaneously on the band's 7px top rail, the readout's 9×9px legend swatch, and the verdict chip — all three transitioning together over 320ms. A grade color used as a lone accent is decoration and is forbidden; used in the triad it is a readout.
+
+**The Chamber Pair Rule.** A chamber's state is read from the chamber pair, never from the grade ramp. Loaded is Chamber Blue and racked is Chambered Red wherever both states can be on screen together — the cylinder's ten sockets and the register's ten rows. A pool-dependent color on a chamber is forbidden: it collides with Chambered Red at the exceptional stop and makes a live round look spent.
 
 **The No Glow Rule.** No box-shadow with a colored spread, no text-shadow, no bloom, no backdrop-filter. Depth is milled, not lit. Every shadow in the system is black at 0.4–0.7 alpha or a ≤6% white inset hairline.
 

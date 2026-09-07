@@ -21,6 +21,9 @@
   --signal: #f2560c;
   --signal-deep: #a83606;
 
+  /* A live round still in the chamber, before it is racked. */
+  --loaded: #3a76a8;
+
   /* A round you already refused. Distinct from the machine's own signal. */
   --chambered: #c9342a;
 
@@ -437,15 +440,17 @@ button[disabled] {
   color: #444d52;
 }
 
+/* Loaded is blue and racked is red: the two live chamber states have to be
+   told apart at a glance, so neither one borrows the grade ramp. */
 .socket.is-loaded {
   background:
     radial-gradient(circle at 38% 30%, rgba(255, 255, 255, 0.35) 0%, transparent 55%),
-    var(--grade);
+    var(--loaded);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
 .socket.is-loaded .socket-mark {
-  color: rgba(13, 16, 18, 0.82);
+  color: #06131c;
   font-weight: 700;
 }
 
@@ -629,7 +634,7 @@ button[disabled] {
 }
 
 .register-row.is-loaded .register-lamp {
-  background: var(--grade);
+  background: var(--loaded);
 }
 
 .register-row.is-racked .register-lamp {
