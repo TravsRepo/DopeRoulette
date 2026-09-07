@@ -154,6 +154,8 @@ export default function App() {
   const reducedMotion = useReducedMotion();
   const cylinder = useCylinder(soundOn, reducedMotion);
   const spinRef = useRef<HTMLButtonElement>(null);
+  const playRef = useRef<HTMLButtonElement>(null);
+  const verdictRef = useRef<HTMLButtonElement>(null);
 
   const bench = useMemo(() => onTheBench(pool, chambers), [pool, chambers]);
   const odds = oddsFor(chambers);
@@ -223,6 +225,17 @@ export default function App() {
 
   const landedIndex = outcome?.index ?? null;
   const decision = outcome?.kind === 'choice' ? outcome : null;
+
+  // A panel that opens over the cylinder takes the keyboard with it, so the
+  // decision is never left sitting somewhere the eye is not. Racking hands
+  // focus back to Spin, which is where the panel was.
+  useEffect(() => {
+    if (decision) playRef.current?.focus();
+  }, [decision]);
+
+  useEffect(() => {
+    if (settled) verdictRef.current?.focus();
+  }, [settled]);
 
   return (
     <div className="bench" style={{ ['--grade' as string]: `var(--grade-${grade.key})` }}>
@@ -299,49 +312,76 @@ export default function App() {
             </div>
           ) : (
             <>
-              <div className="hammer" aria-hidden="true" />
-              <div className={cylinder.spinning ? 'cylinder is-spinning' : 'cylinder'}>
-                <div className="cylinder-ring" ref={cylinder.ringRef}>
-                  {chambers.map((chamber, i) => {
-                    const state =
-                      chamber.game === null ? 'empty' : chamber.racked ? 'racked' : 'loaded';
-                    const landed = landedIndex === i && !cylinder.spinning;
-                    return (
-                      <div
-                        key={i}
-                        className={`socket is-${state}${landed ? ' is-landed' : ''}`}
-                        style={{ ['--slot' as string]: String(i) }}
-                      >
-                        <span className="socket-mark">{String(i + 1).padStart(2, '0')}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+              <div className="stage">
+                <div className="hammer" aria-hidden="true" />
+                <div className={cylinder.spinning ? 'cylinder is-spinning' : 'cylinder'}>
+                  <div className="cylinder-ring" ref={cylinder.ringRef}>
+                    {chambers.map((chamber, i) => {
+                      const state =
+                        chamber.game === null ? 'empty' : chamber.racked ? 'racked' : 'loaded';
+                      const landed = landedIndex === i && !cylinder.spinning;
+                      return (
+                        <div
+                          key={i}
+                          className={`socket is-${state}${landed ? ' is-landed' : ''}`}
+                          style={{ ['--slot' as string]: String(i) }}
+                        >
+                          <span className="socket-mark">{String(i + 1).padStart(2, '0')}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
 
-                <div className="cylinder-core">
-                  <p className="cylinder-status">
-                    {cylinder.spinning
-                      ? 'SPINNING'
-                      : outcome?.kind === 'seated'
-                        ? `CHAMBER ${String(outcome.index + 1).padStart(2, '0')} LOADED`
-                        : outcome?.kind === 'dry'
-                          ? `CHAMBER ${String(outcome.index + 1).padStart(2, '0')} DRY`
-                          : `${odds.loaded} / ${CHAMBER_COUNT}`}
-                  </p>
+                  <div className="cylinder-core">
+                    <p className="cylinder-status">
+                      {cylinder.spinning
+                        ? 'SPINNING'
+                        : outcome?.kind === 'seated'
+                          ? `CHAMBER ${String(outcome.index + 1).padStart(2, '0')} LOADED`
+                          : outcome?.kind === 'dry'
+                            ? `CHAMBER ${String(outcome.index + 1).padStart(2, '0')} DRY`
+                            : `${odds.loaded} / ${CHAMBER_COUNT}`}
+                    </p>
+                  </div>
                 </div>
               </div>
 
+              {/* The gun is worked from the gun: spin here, and the panel that
+                  opens over the cylinder carries its own play / rack. Stowed
+                  rather than unmounted so the cylinder never jumps. */}
+              <div className={`stage-controls${decision || settled ? ' is-stowed' : ''}`}>
+                <button
+                  type="button"
+                  className="action"
+                  ref={spinRef}
+                  disabled={cylinder.spinning || pool.length === 0}
+                  onClick={handleSpin}
+                >
+                  {cylinder.spinning ? 'Spinning…' : 'Spin the cylinder'}
+                </button>
+              </div>
+
               {settled ? (
-                <div className="verdict" role="status">
+                <div className="verdict">
                   <span className="verdict-grade stencil">{grade.label}</span>
                   <h2 className="verdict-title">{settled.title}</h2>
                   <p className="verdict-odds">
                     Drawn at <b>1 in {pool.length}</b> · {oddsPercent(pool.length)}% ·{' '}
                     {describeSettings(settings)}
                   </p>
+                  <div className="panel-actions">
+                    <button
+                      type="button"
+                      className="action-secondary stencil"
+                      ref={verdictRef}
+                      onClick={() => reload()}
+                    >
+                      Reload dope rifle
+                    </button>
+                  </div>
                 </div>
               ) : decision ? (
-                <div className="decision" role="status">
+                <div className="decision">
                   <span className="decision-chamber stencil">
                     Chamber {String(decision.index + 1).padStart(2, '0')}
                   </span>
@@ -349,6 +389,14 @@ export default function App() {
                   <p className="decision-note">
                     Rack it and it goes back red. Land on it again and it is the night.
                   </p>
+                  <div className="panel-actions">
+                    <button type="button" className="action" ref={playRef} onClick={handlePlay}>
+                      Play it
+                    </button>
+                    <button type="button" className="action-secondary stencil" onClick={handleRack}>
+                      Rack it
+                    </button>
+                  </div>
                 </div>
               ) : null}
             </>
@@ -427,43 +475,20 @@ export default function App() {
           )}
         </div>
 
+        {/* The rail sets the machine up; the gun is worked at the gun. The
+            reload here steps aside once the verdict panel offers its own. */}
         <div className="actions">
           {settled ? (
-            <>
-              <p className="action-note">The night is settled. Go play it.</p>
-              <button type="button" className="action-secondary stencil" onClick={() => reload()}>
-                Reload dope rifle
-              </button>
-            </>
-          ) : decision ? (
-            <>
-              <button type="button" className="action" onClick={handlePlay}>
-                Play it
-              </button>
-              <button type="button" className="action-secondary stencil" onClick={handleRack}>
-                Rack it
-              </button>
-            </>
+            <p className="action-note">The night is settled. Go play it.</p>
           ) : (
-            <>
-              <button
-                type="button"
-                className="action"
-                ref={spinRef}
-                disabled={cylinder.spinning || pool.length === 0}
-                onClick={handleSpin}
-              >
-                {cylinder.spinning ? 'Spinning…' : 'Spin the cylinder'}
-              </button>
-              <button
-                type="button"
-                className="action-secondary stencil"
-                disabled={cylinder.spinning}
-                onClick={() => reload()}
-              >
-                Reload dope rifle
-              </button>
-            </>
+            <button
+              type="button"
+              className="action-secondary stencil"
+              disabled={cylinder.spinning}
+              onClick={() => reload()}
+            >
+              Reload dope rifle
+            </button>
           )}
         </div>
       </div>

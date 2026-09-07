@@ -349,18 +349,42 @@ button[disabled] {
 /* ------------------------------------------------------------------ gun -- */
 
 .gun {
-  --cyl: clamp(230px, 27vw, 372px);
+  /* The vh term keeps the cylinder and the control under it inside the
+     workspace row on a short screen. */
+  --cyl: clamp(230px, min(27vw, 42vh), 372px);
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
   min-height: 0;
   padding: 8px;
 }
 
+/* The stage is exactly the cylinder's box, so the hammer keeps its seat on
+   the rim no matter what is stacked underneath. */
+.stage {
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--cyl);
+  height: var(--cyl);
+}
+
+/* Stowed, not unmounted: the cylinder must not jump when a panel opens. */
+.stage-controls {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+}
+
+.stage-controls.is-stowed {
+  visibility: hidden;
+}
+
 .hammer {
   position: absolute;
-  top: calc(50% - var(--cyl) / 2 - 20px);
+  top: -20px;
   left: 50%;
   width: 0;
   height: 0;
@@ -571,6 +595,16 @@ button[disabled] {
 .verdict-odds b {
   color: var(--ink);
   font-weight: 700;
+}
+
+/* The decision is answered where it is read, over the cylinder. */
+.panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2px;
 }
 
 .dry-message {
@@ -1095,13 +1129,16 @@ button[disabled] {
   }
 
   .action {
-    flex: 1 1 100%;
     padding: 16px 24px;
     white-space: normal;
   }
 
-  .action-secondary {
+  .actions .action-secondary {
     flex: 1 1 auto;
+  }
+
+  .panel-actions {
+    gap: 10px;
   }
 
   .action-note {
