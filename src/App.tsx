@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CATALOG, MANIFEST_IS_PLACEHOLDER, type Game } from './machine/catalog';
 import {
-  DEFAULT_SETTINGS,
   LENGTH_LABELS,
   LENGTH_STOPS,
   PLAYER_LABELS,
@@ -18,14 +17,21 @@ import {
 } from './machine/pool';
 import {
   CHAMBER_COUNT,
+  addShell,
+  confineToPool,
   loadCylinder,
-  onTheBench,
   oddsFor,
+  randomLoadout,
+  removeShell,
   resolve,
+  seatShell,
   spin,
+  unseatShell,
   type Chamber,
+  type Loadout,
   type SpinOutcome,
 } from './machine/cylinder';
+import { decodeConfig, encodeConfig } from './machine/share';
 import { useCylinder } from './machine/useCylinder';
 
 const SPINS_STORAGE = 'doperoulette.spins';
@@ -137,7 +143,16 @@ function Lever<T extends string | number>({
 }
 
 export default function App() {
-  const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
+  // The link is the opening state: levers, loadout, and the chambers they
+  // seat, all settled before the first render so nothing flashes a default.
+  const [opening] = useState(() => {
+    const shared = decodeConfig(window.location.search);
+    const pool = poolFor(CATALOG, shared.settings);
+    const loadout = shared.loadout ?? randomLoadout(pool);
+    return { settings: shared.settings, loadout, chambers: loadCylinder(pool, loadout) };
+  });
+
+  const [settings, setSettings] = useState<Settings>(opening.settings);
   const [soundOn, setSoundOn] = useState(true);
   const [spins, countSpin] = useNightTally();
 
@@ -145,7 +160,11 @@ export default function App() {
   const poolRef = useRef(pool);
   poolRef.current = pool;
 
-  const [chambers, setChambers] = useState<Chamber[]>(() => loadCylinder(pool));
+  const [loadout, setLoadout] = useState<Loadout>(opening.loadout);
+  const loadoutRef = useRef(loadout);
+  loadoutRef.current = loadout;
+
+  const [chambers, setChambers] = useState<Chamber[]>(opening.chambers);
   const [outcome, setOutcome] = useState<SpinOutcome | null>(null);
   const [settled, setSettled] = useState<Game | null>(null);
   /** Spins since the cylinder was last loaded. The levers lock after the first. */
@@ -157,16 +176,18 @@ export default function App() {
   const playRef = useRef<HTMLButtonElement>(null);
   const verdictRef = useRef<HTMLButtonElement>(null);
 
-  const bench = useMemo(() => onTheBench(pool, chambers), [pool, chambers]);
   const odds = oddsFor(chambers);
   const grade = gradeFor(pool.length);
   const armed = spinsThisLoad > 0;
   const leversLocked = armed || cylinder.spinning || settled !== null;
+  const gunIsFull = odds.loaded >= CHAMBER_COUNT;
 
+  // Reloading re-applies the recipe rather than drawing a new one: the loadout
+  // is what the user (or their link) asked for, and it outlives a night.
   const reload = useCallback(
-    (nextPool?: Game[]) => {
+    (next?: { pool?: Game[]; loadout?: Loadout }) => {
       cylinder.reset();
-      setChambers(loadCylinder(nextPool ?? poolRef.current));
+      setChambers(loadCylinder(next?.pool ?? poolRef.current, next?.loadout ?? loadoutRef.current));
       setOutcome(null);
       setSettled(null);
       setSpinsThisLoad(0);
@@ -175,17 +196,46 @@ export default function App() {
   );
 
   // Before the first spin the cylinder is not committed, so changing a lever
-  // re-seats the opening rounds from the new pool rather than leaving titles
-  // in the gun that the levers now exclude.
+  // re-seats it from the new pool rather than leaving titles in the gun that
+  // the levers now exclude. Shells of a title that survives are kept.
   const handleSettings = useCallback(
     (patch: Partial<Settings>) => {
-      setSettings((current) => {
-        const next = { ...current, ...patch };
-        if (!armed && settled === null) reload(poolFor(CATALOG, next));
-        return next;
-      });
+      const next = { ...settings, ...patch };
+      setSettings(next);
+      if (armed || settled !== null) return;
+
+      const nextPool = poolFor(CATALOG, next);
+      const nextLoadout = confineToPool(loadoutRef.current, nextPool);
+      setLoadout(nextLoadout);
+      reload({ pool: nextPool, loadout: nextLoadout });
     },
-    [armed, reload, settled],
+    [armed, reload, settings, settled],
+  );
+
+  // A shell goes straight into a free chamber rather than re-seating the whole
+  // cylinder, so the gun fills up under the hand instead of reshuffling.
+  //
+  // Both halves update from the previous state rather than from a ref, because
+  // a fast hand on the + key batches several clicks into one render and a ref
+  // read would only count the last of them. They stop on the same condition:
+  // before the first spin, shells in the loadout and filled chambers are the
+  // same number, so `addShell` runs out of room exactly when `seatShell` does.
+  const handleAddShell = useCallback(
+    (game: Game) => {
+      if (leversLocked) return;
+      setLoadout((current) => addShell(current, game.id));
+      setChambers((current) => seatShell(current, game));
+    },
+    [leversLocked],
+  );
+
+  const handleRemoveShell = useCallback(
+    (game: Game) => {
+      if (leversLocked) return;
+      setLoadout((current) => removeShell(current, game.id));
+      setChambers((current) => unseatShell(current, game.id));
+    },
+    [leversLocked],
   );
 
   const handleSpin = useCallback(() => {
@@ -196,7 +246,7 @@ export default function App() {
     setSpinsThisLoad((n) => n + 1);
 
     cylinder.run(index, () => {
-      const result = resolve(chambers, index, bench);
+      const result = resolve(chambers, index, pool);
       setOutcome(result);
 
       if (result.kind === 'seated') {
@@ -207,7 +257,7 @@ export default function App() {
         setSettled(result.game);
       }
     });
-  }, [bench, chambers, countSpin, cylinder, pool.length, settled]);
+  }, [chambers, countSpin, cylinder, pool, settled]);
 
   const handlePlay = useCallback(() => {
     if (outcome && (outcome.kind === 'choice' || outcome.kind === 'forced')) {
@@ -237,6 +287,14 @@ export default function App() {
     if (settled) verdictRef.current?.focus();
   }, [settled]);
 
+  // The address bar always holds the opening configuration, so the page can be
+  // bookmarked or handed to someone else. Levers and loadout are frozen once
+  // the cylinder is live, so this settles before the first spin and stays put.
+  useEffect(() => {
+    const url = `${window.location.pathname}${encodeConfig(settings, loadout)}${window.location.hash}`;
+    window.history.replaceState(null, '', url);
+  }, [loadout, settings]);
+
   return (
     <div className="bench" style={{ ['--grade' as string]: `var(--grade-${grade.key})` }}>
       <header className="manifest">
@@ -250,7 +308,7 @@ export default function App() {
           <dl className="pool-readout">
             <dt className="stencil">On the bench</dt>
             <dd>
-              {bench.length}
+              {pool.length}
               <small>OF {CATALOG.length}</small>
             </dd>
           </dl>
@@ -287,16 +345,44 @@ export default function App() {
             On the bench
           </h2>
           <ol className="rounds-list">
-            {bench.slice(0, 40).map((game) => (
-              <li key={game.id} className="round">
-                <span className="round-serial">{SERIALS.get(game.id) ?? '000'}</span>
-                <span className="round-title">{game.title}</span>
-              </li>
-            ))}
+            {pool.slice(0, 40).map((game) => {
+              const shells = loadout[game.id] ?? 0;
+              return (
+                <li key={game.id} className={shells > 0 ? 'round is-loaded' : 'round'}>
+                  <span className="round-serial">{SERIALS.get(game.id) ?? '000'}</span>
+                  <span className="round-title">{game.title}</span>
+                  <span className="round-stepper">
+                    <button
+                      type="button"
+                      className="shell-step"
+                      aria-label={`Take a shell of ${game.title} out of the cylinder`}
+                      disabled={leversLocked || shells === 0}
+                      onClick={() => handleRemoveShell(game)}
+                    >
+                      −
+                    </button>
+                    <span className="round-count" aria-label={`${shells} loaded`}>
+                      {shells}
+                    </span>
+                    <button
+                      type="button"
+                      className="shell-step"
+                      aria-label={`Load a shell of ${game.title}`}
+                      disabled={leversLocked || gunIsFull}
+                      onClick={() => handleAddShell(game)}
+                    >
+                      +
+                    </button>
+                  </span>
+                </li>
+              );
+            })}
           </ol>
-          {bench.length > 40 && <p className="panel-foot">+{bench.length - 40} more eligible</p>}
-          {bench.length === 0 && pool.length > 0 && (
-            <p className="panel-foot">Every eligible title is in the gun.</p>
+          {pool.length > 40 && <p className="panel-foot">+{pool.length - 40} more eligible</p>}
+          {leversLocked && settled === null ? (
+            <p className="panel-foot">Locked while the cylinder is live</p>
+          ) : (
+            gunIsFull && <p className="panel-foot">Every chamber is spoken for.</p>
           )}
         </section>
 

@@ -321,16 +321,18 @@ button[disabled] {
   overflow-y: auto;
 }
 
+/* A bench row is a loading counter: stock number, title, and the two keys
+   that put shells in the cylinder and take them back out. */
 .round {
-  display: flex;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
   gap: 10px;
-  padding: 7px 0;
+  padding: 5px 0;
   border-bottom: 1px solid rgba(61, 70, 77, 0.32);
 }
 
 .round-serial {
-  flex: 0 0 auto;
   font-family: var(--font-mono);
   font-size: 11px;
   font-variant-numeric: tabular-nums;
@@ -344,6 +346,57 @@ button[disabled] {
   text-transform: uppercase;
   color: var(--ink-dim);
   overflow-wrap: break-word;
+}
+
+.round.is-loaded .round-title {
+  color: var(--ink);
+}
+
+.round-stepper {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.shell-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--ink-dim);
+  background: var(--steel-700);
+  border: 1px solid var(--hairline);
+  transition: color 140ms ease, border-color 140ms ease, background-color 140ms ease;
+}
+
+.shell-step:hover:not([disabled]) {
+  color: var(--signal);
+  border-color: var(--signal);
+}
+
+.shell-step[disabled] {
+  color: #4c565b;
+  background: var(--steel-800);
+  border-color: var(--hairline-soft);
+}
+
+/* The count carries the same blue as the chambers it fills. */
+.round-count {
+  min-width: 18px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+}
+
+.round.is-loaded .round-count {
+  color: var(--loaded);
+  font-weight: 700;
 }
 
 /* ------------------------------------------------------------------ gun -- */
@@ -1121,6 +1174,13 @@ button[disabled] {
 
   .detent {
     padding: 7px 10px;
+  }
+
+  /* Thumb-sized, and matched to the detents beside them. */
+  .shell-step {
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
   }
 
   .actions {
