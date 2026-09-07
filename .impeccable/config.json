@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/styles.css"
+        ],
+        "createdAt": "2026-09-06T09:50:19.181Z",
+        "reason": "impeccable-finish-reviewer ruled it a machine part, not the side-tab tell: .band::before is the painted grade rail on the top edge of a full-bleed band (inset: 0 0 auto), bound to live pool state, transitions colour when the pool changes, and is echoed by the legend swatch and verdict chip. Reviewer verbatim: 'ruled a machine part, not the side-tab tell. Do not fix.' Not a user decision."
+      }
+    ]
+  }
+}

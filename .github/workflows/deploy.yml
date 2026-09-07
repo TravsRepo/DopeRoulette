@@ -1,0 +1,57 @@
+# Builds the machine and publishes it to GitHub Pages.
+#
+# Pages must be pointed at "GitHub Actions" as its source once, under
+# Settings -> Pages -> Build and deployment. Nothing else is needed: the
+# artifact this uploads is what gets served.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Lets a deploy be re-run by hand from the Actions tab.
+  workflow_dispatch:
+
+# The deploy job trades the repo token for a Pages deployment.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time. A push mid-deploy queues rather than cancels, so
+# whatever is on main always finishes landing.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # `npm run build` is `tsc -b && vite build`, so a type error fails here
+      # rather than shipping.
+      - run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

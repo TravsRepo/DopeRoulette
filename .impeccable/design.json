@@ -1,0 +1,531 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-06T00:00:00.000Z",
+  "title": "Design System: DopeChaser",
+  "extensions": {
+    "colorMeta": {
+      "signal": {
+        "role": "primary",
+        "displayName": "Signal Orange",
+        "canonical": "#f2560c",
+        "tonalRamp": [
+          "#2a0d02",
+          "#4d1904",
+          "#752705",
+          "#a83606",
+          "#d24709",
+          "#f2560c",
+          "#ff8248",
+          "#ffc7ab"
+        ]
+      },
+      "signal-deep": {
+        "role": "primary",
+        "displayName": "Signal Deep",
+        "canonical": "#a83606",
+        "tonalRamp": [
+          "#200a01",
+          "#3d1403",
+          "#5c1e04",
+          "#7c2905",
+          "#a83606",
+          "#cf4508",
+          "#ee6b2c",
+          "#f9b895"
+        ]
+      },
+      "grade-common": {
+        "role": "secondary",
+        "displayName": "Field Olive",
+        "canonical": "#62705f",
+        "tonalRamp": [
+          "#161a15",
+          "#242a23",
+          "#333b32",
+          "#485141",
+          "#62705f",
+          "#82907e",
+          "#a6b1a3",
+          "#d3dad1"
+        ]
+      },
+      "grade-scarce": {
+        "role": "secondary",
+        "displayName": "Signal Blue",
+        "canonical": "#2f7191",
+        "tonalRamp": [
+          "#07161d",
+          "#0d2632",
+          "#143a4b",
+          "#1d5268",
+          "#2f7191",
+          "#4a91b3",
+          "#7cb6d1",
+          "#c0dcea"
+        ]
+      },
+      "grade-rare": {
+        "role": "secondary",
+        "displayName": "Brass",
+        "canonical": "#bb8a2c",
+        "tonalRamp": [
+          "#1f1607",
+          "#372611",
+          "#523a17",
+          "#71501e",
+          "#946b24",
+          "#bb8a2c",
+          "#dcb35f",
+          "#f0dcae"
+        ]
+      },
+      "grade-exceptional": {
+        "role": "secondary",
+        "displayName": "Flare Red",
+        "canonical": "#bf422b",
+        "tonalRamp": [
+          "#210a06",
+          "#3b120a",
+          "#571c0f",
+          "#772815",
+          "#9c351f",
+          "#bf422b",
+          "#d97a63",
+          "#efc0b3"
+        ]
+      },
+      "steel-900": {
+        "role": "neutral",
+        "displayName": "Well Steel",
+        "canonical": "#0d1012",
+        "tonalRamp": [
+          "#0d1012",
+          "#171b1e",
+          "#22282c",
+          "#2f363b",
+          "#3d464d",
+          "#5b666e",
+          "#8d979e",
+          "#c9d0d4"
+        ]
+      },
+      "steel-850": {
+        "role": "neutral",
+        "displayName": "Trough Steel",
+        "canonical": "#121618",
+        "tonalRamp": [
+          "#0a0d0e",
+          "#121618",
+          "#1d2225",
+          "#2a3135",
+          "#3b4348",
+          "#586268",
+          "#8b959b",
+          "#c7ced2"
+        ]
+      },
+      "steel-800": {
+        "role": "neutral",
+        "displayName": "Crate Body",
+        "canonical": "#171b1e",
+        "tonalRamp": [
+          "#0b0e0f",
+          "#171b1e",
+          "#232a2e",
+          "#31393e",
+          "#424b52",
+          "#5f6a71",
+          "#919ba1",
+          "#cbd1d5"
+        ]
+      },
+      "steel-750": {
+        "role": "neutral",
+        "displayName": "Rail Steel",
+        "canonical": "#1b2024",
+        "tonalRamp": [
+          "#0d1013",
+          "#1b2024",
+          "#272e33",
+          "#353e44",
+          "#465057",
+          "#636e76",
+          "#949ea5",
+          "#cdd3d7"
+        ]
+      },
+      "steel-700": {
+        "role": "neutral",
+        "displayName": "Face Steel",
+        "canonical": "#1f2429",
+        "tonalRamp": [
+          "#0f1215",
+          "#1f2429",
+          "#2b3238",
+          "#394248",
+          "#4a545c",
+          "#67727a",
+          "#97a2a9",
+          "#ced4d9"
+        ]
+      },
+      "steel-600": {
+        "role": "neutral",
+        "displayName": "Lit Face Steel",
+        "canonical": "#282e34",
+        "tonalRamp": [
+          "#14181c",
+          "#1f2429",
+          "#282e34",
+          "#3a4249",
+          "#4d575f",
+          "#6b757e",
+          "#9aa5ac",
+          "#d0d6da"
+        ]
+      },
+      "steel-500": {
+        "role": "neutral",
+        "displayName": "Milled Edge",
+        "canonical": "#333b42",
+        "tonalRamp": [
+          "#171b1f",
+          "#22282d",
+          "#2c343a",
+          "#333b42",
+          "#48535b",
+          "#667179",
+          "#98a3aa",
+          "#d0d6db"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Outline Hairline",
+        "canonical": "#3d464d",
+        "tonalRamp": [
+          "#1b1f22",
+          "#262c31",
+          "#313940",
+          "#3d464d",
+          "#515c65",
+          "#6e7a83",
+          "#9ba5ac",
+          "#d1d7db"
+        ]
+      },
+      "hairline-soft": {
+        "role": "neutral",
+        "displayName": "Scored Seam",
+        "canonical": "#2b3237",
+        "tonalRamp": [
+          "#13171a",
+          "#1e2226",
+          "#2b3237",
+          "#374047",
+          "#4a545c",
+          "#67727a",
+          "#97a2a9",
+          "#ced4d9"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Bone",
+        "canonical": "#ece7d9",
+        "tonalRamp": [
+          "#26241e",
+          "#3d3a30",
+          "#57523f",
+          "#7a7460",
+          "#a19a83",
+          "#c6bfab",
+          "#ece7d9",
+          "#f8f5ee"
+        ]
+      },
+      "ink-dim": {
+        "role": "neutral",
+        "displayName": "Bone Dim",
+        "canonical": "#9aa2a4",
+        "tonalRamp": [
+          "#191c1d",
+          "#282d2e",
+          "#3a4142",
+          "#4f5758",
+          "#6b7476",
+          "#9aa2a4",
+          "#bfc5c6",
+          "#e4e7e8"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Bone Faint",
+        "canonical": "#808a8c",
+        "tonalRamp": [
+          "#151819",
+          "#232728",
+          "#333a3b",
+          "#465051",
+          "#5f6a6b",
+          "#808a8c",
+          "#a9b1b2",
+          "#dbdfdf"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The wordmark only. Extended Archivo (wdth 122 / wght 900), uppercase, line-height 0.9. Its second syllable takes signal orange; the only word in the system allowed that color."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The landed title inside the verdict panel. The largest element in the system, present only in the landed state."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Reel plate titles. Condensed (wdth 76) so long titles hold two lines inside a fixed 264px plate."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Every number, serial, odds string and count. Martian Mono with tabular figures so values do not reflow when they change. Scales up to clamp(1.4rem, 2.2vw, 2rem) / weight 700 for the pool readout."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Stencilled panel marks: lid signage, lever names, grade chip, secondary buttons. Never below 12px; the lid widens to 16px / 0.26em because it is signage, not a control label."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running prose only (empty-state recovery, pull note). Capped near 24-52ch. The only mixed-case, unspaced type in the system."
+      }
+    },
+    "shadows": [
+      {
+        "name": "well",
+        "value": "0 18px 44px rgba(0,0,0,0.55) inset",
+        "purpose": "The reel band interior. Establishes that the reel runs below the crate surface."
+      },
+      {
+        "name": "trough",
+        "value": "0 2px 6px rgba(0,0,0,0.5) inset",
+        "purpose": "Shallow recesses: the lever track, the indicator lamp."
+      },
+      {
+        "name": "plate-lift",
+        "value": "0 10px 24px rgba(0,0,0,0.42)",
+        "purpose": "Reel plates sitting above the well."
+      },
+      {
+        "name": "panel-lift",
+        "value": "0 24px 60px rgba(0,0,0,0.7)",
+        "purpose": "The verdict panel, the one element allowed above everything."
+      },
+      {
+        "name": "bevel-highlight",
+        "value": "0 1px 0 rgba(255,255,255,0.05) inset",
+        "purpose": "The top edge of a control catching light. Never above 6% white on steel."
+      },
+      {
+        "name": "key-riser",
+        "value": "0 1px 0 rgba(255,255,255,0.4) inset, 0 3px 0 var(--signal-deep), 0 10px 22px rgba(0,0,0,0.55)",
+        "purpose": "The primary Pull's physical riser. Grows to 4px on hover, collapses to 0 on active with a matching 3px downward translate."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Every non-reel state change: grade color swaps (320ms), plate dimming (420ms), verdict open (520ms)."
+      },
+      {
+        "name": "reel-run",
+        "value": "cubic-bezier(0.11, 0.62, 0.02, 1)",
+        "purpose": "First 84% of the 4400ms reel run: hard ramp on, long decelerating tail, carrying 0.62 of a plate past the winner."
+      },
+      {
+        "name": "reel-settle",
+        "value": "cubic-bezier(0.32, 0, 0.2, 1)",
+        "purpose": "Final 16% of the run, pulling the overshoot back onto the marker. Overshoot-and-settle is the signature; a reel that stops dead on target is wrong."
+      },
+      {
+        "name": "reel-duration",
+        "value": "4400ms",
+        "purpose": "Total travel time of one pull."
+      },
+      {
+        "name": "reel-streak",
+        "value": "feGaussianBlur stdDeviation=\"7 0\"",
+        "purpose": "Horizontal-only motion blur on the track while it is genuinely moving fast. The only filter in the build."
+      },
+      {
+        "name": "control-feedback",
+        "value": "90ms ease (press) / 140ms ease (hover)",
+        "purpose": "Button and detent hover and press response."
+      },
+      {
+        "name": "reduced-motion-step",
+        "value": "150ms per plate, 6 plates",
+        "purpose": "Under prefers-reduced-motion the reel steps discretely through its last six plates, the way a segment display swaps rather than slides; all transitions collapse to 0.01ms and the streak filter is removed."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "rail-stack",
+        "value": "1180px"
+      },
+      {
+        "name": "compact",
+        "value": "720px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Pull (Primary Action)",
+      "kind": "button",
+      "refersTo": "pull",
+      "description": "The painted orange key that spends a key and runs the reel. Presses physically: the riser collapses as the face travels down.",
+      "html": "<button class=\"ds-pull\">Chase one</button>",
+      "css": ".ds-pull { padding: 20px 34px; background: linear-gradient(180deg, #ff6a22 0%, var(--signal, #f2560c) 46%, var(--signal-deep, #a83606) 100%); color: #150803; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: 1.05rem; font-variation-settings: 'wdth' 112, 'wght' 900; letter-spacing: 0.02em; text-transform: uppercase; white-space: nowrap; border: 1px solid #ff8248; border-radius: 0; cursor: pointer; box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset, 0 3px 0 var(--signal-deep, #a83606), 0 10px 22px rgba(0,0,0,0.55); transition: transform 90ms ease, box-shadow 90ms ease; } .ds-pull:hover { transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.45) inset, 0 4px 0 var(--signal-deep, #a83606), 0 14px 26px rgba(0,0,0,0.6); } .ds-pull:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset, 0 0 0 var(--signal-deep, #a83606), 0 5px 12px rgba(0,0,0,0.5); } .ds-pull:focus-visible { outline: 2px solid var(--signal, #f2560c); outline-offset: 3px; } .ds-pull[disabled] { background: var(--steel-600, #282e34); border-color: var(--hairline, #3d464d); color: var(--ink-faint, #808a8c); cursor: not-allowed; box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 2px 6px rgba(0,0,0,0.4); }"
+    },
+    {
+      "name": "Pull Secondary",
+      "kind": "button",
+      "refersTo": "pull-secondary",
+      "description": "The quiet steel control beside the Pull. Stencil lettering, hairline outline, never orange.",
+      "html": "<button class=\"ds-pull-secondary\">Chase another</button>",
+      "css": ".ds-pull-secondary { padding: 16px 20px; background: var(--steel-700, #1f2429); border: 1px solid var(--hairline, #3d464d); border-radius: 0; color: var(--ink-dim, #9aa2a4); font-family: 'Saira Stencil One', 'Archivo', sans-serif; font-size: 12px; letter-spacing: 0.18em; line-height: 1.2; text-transform: uppercase; white-space: nowrap; cursor: pointer; transition: color 140ms ease, border-color 140ms ease; } .ds-pull-secondary:hover { color: var(--ink, #ece7d9); border-color: var(--steel-500, #333b42); } .ds-pull-secondary:focus-visible { outline: 2px solid var(--signal, #f2560c); outline-offset: 3px; } .ds-pull-secondary[disabled] { color: var(--steel-500, #333b42); cursor: not-allowed; }"
+    },
+    {
+      "name": "Lever",
+      "kind": "input",
+      "refersTo": "lever-track",
+      "description": "The only input pattern in the system: a stencilled label over a recessed track of monospaced detents. The selected notch lifts and takes a signal-orange underscore.",
+      "html": "<div class=\"ds-lever\"><span class=\"ds-lever-label\">Players</span><div class=\"ds-lever-track\" role=\"radiogroup\" aria-label=\"Players\"><button class=\"ds-detent\" role=\"radio\" aria-checked=\"false\">1</button><button class=\"ds-detent\" role=\"radio\" aria-checked=\"false\">2</button><button class=\"ds-detent\" role=\"radio\" aria-checked=\"true\">4</button><button class=\"ds-detent\" role=\"radio\" aria-checked=\"false\" disabled>5+</button></div></div>",
+      "css": ".ds-lever { display: flex; flex-direction: column; gap: 9px; } .ds-lever-label { font-family: 'Saira Stencil One', 'Archivo', sans-serif; font-size: 12px; letter-spacing: 0.18em; line-height: 1.2; text-transform: uppercase; color: var(--ink-dim, #9aa2a4); } .ds-lever-track { display: flex; flex-wrap: wrap; padding: 3px; background: var(--steel-850, #121618); border: 1px solid var(--hairline-soft, #2b3237); box-shadow: 0 2px 6px rgba(0,0,0,0.5) inset; } .ds-detent { position: relative; padding: 9px 13px; background: none; border: none; border-radius: 0; font-family: 'Martian Mono', ui-monospace, monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; color: var(--ink-dim, #9aa2a4); white-space: nowrap; cursor: pointer; transition: color 140ms ease, background-color 140ms ease; } .ds-detent:hover:not([aria-checked='true']):not([disabled]) { background: var(--steel-700, #1f2429); } .ds-detent[aria-checked='true'] { color: var(--ink, #ece7d9); background: var(--steel-600, #282e34); box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 2px 6px rgba(0,0,0,0.45); } .ds-detent[aria-checked='true']::after { content: ''; position: absolute; left: 50%; bottom: 4px; width: 14px; height: 2px; background: var(--signal, #f2560c); transform: translateX(-50%); } .ds-detent[disabled] { color: var(--ink-faint, #808a8c); cursor: not-allowed; } .ds-detent:focus-visible { outline: 2px solid var(--signal, #f2560c); outline-offset: 3px; }"
+    },
+    {
+      "name": "Grade Chip",
+      "kind": "chip",
+      "refersTo": "verdict-grade",
+      "description": "A solid rectangle filled with the live grade color, printing well-steel stencil lettering. Never appears alone: it changes in lockstep with the band rail and the legend swatch.",
+      "html": "<span class=\"ds-grade-chip\">Rare</span>",
+      "css": ".ds-grade-chip { display: inline-flex; align-items: center; padding: 6px 12px; background: var(--grade, #bb8a2c); color: var(--steel-900, #0d1012); font-family: 'Saira Stencil One', 'Archivo', sans-serif; font-size: 12px; letter-spacing: 0.18em; line-height: 1.2; text-transform: uppercase; border-radius: 0; transition: background-color 320ms cubic-bezier(0.16, 1, 0.3, 1); }"
+    },
+    {
+      "name": "Reel Plate",
+      "kind": "card",
+      "refersTo": "plate",
+      "description": "One fixed-width card on the reel: milled top edge, serial pinned top-left, condensed title centered, monospaced meta pinned bottom. Drops to 13% opacity when the reel lands.",
+      "html": "<div class=\"ds-plate\"><span class=\"ds-plate-serial\">SKU 042</span><h3 class=\"ds-plate-title\">Counter-Strike 2</h3><span class=\"ds-plate-meta\">1&ndash;10 players &middot; 40 min</span></div>",
+      "css": ".ds-plate { position: relative; width: 264px; min-height: 268px; display: flex; flex-direction: column; justify-content: center; padding: 36px 18px; background: linear-gradient(180deg, var(--steel-600, #282e34) 0%, var(--steel-700, #1f2429) 62%, var(--steel-800, #171b1e) 100%); border: 1px solid var(--hairline-soft, #2b3237); border-top: 1px solid var(--steel-500, #333b42); border-radius: 0; box-shadow: 0 10px 24px rgba(0,0,0,0.42); transition: opacity 420ms cubic-bezier(0.16,1,0.3,1), filter 420ms cubic-bezier(0.16,1,0.3,1); } .ds-plate-serial { position: absolute; top: 20px; left: 20px; font-family: 'Martian Mono', ui-monospace, monospace; font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: 0.06em; color: var(--ink-dim, #9aa2a4); } .ds-plate-title { margin: 0; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: 2rem; font-variation-settings: 'wdth' 76, 'wght' 800; letter-spacing: -0.015em; line-height: 1.06; text-transform: uppercase; color: var(--ink, #ece7d9); overflow-wrap: break-word; } .ds-plate-meta { position: absolute; bottom: 20px; left: 20px; right: 20px; font-family: 'Martian Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: var(--ink-dim, #9aa2a4); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Verdict Panel",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "The landed title, snapped open over the dimmed reel. Hairline sides only, no top or bottom border: it spans the full band height. The head is invariant - grade chip, then title - in both the landed and locked states; locking adds a corner stamp and nothing else.",
+      "html": "<div class=\"ds-verdict\" role=\"status\"><span class=\"ds-locked-stamp\">Tonight&rsquo;s pick</span><div class=\"ds-verdict-head\"><span class=\"ds-grade-chip\">Rare</span><h2 class=\"ds-verdict-title\">Risk of Rain 2</h2></div><p class=\"ds-verdict-odds\">Drawn at <b>1 in 35</b> &middot; <b>2.86%</b> &middot; 4 players</p></div>",
+      "css": ".ds-verdict { position: relative; width: clamp(320px, 48vw, 760px); display: flex; flex-direction: column; justify-content: center; padding: 30px 36px 32px; background: linear-gradient(180deg, var(--steel-700, #1f2429) 0%, var(--steel-800, #171b1e) 100%); border-left: 1px solid var(--hairline, #3d464d); border-right: 1px solid var(--hairline, #3d464d); border-radius: 0; box-shadow: 0 24px 60px rgba(0,0,0,0.7); animation: ds-verdict-lock 520ms cubic-bezier(0.16,1,0.3,1) both; } @keyframes ds-verdict-lock { from { clip-path: inset(42% 0 42% 0); opacity: 0; } to { clip-path: inset(0 0 0 0); opacity: 1; } } .ds-verdict-head { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; } .ds-verdict-title { margin: 0; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(2rem, 5.4vw, 6rem); font-variation-settings: 'wdth' 106, 'wght' 900; letter-spacing: -0.035em; line-height: 0.92; text-transform: uppercase; text-wrap: balance; color: var(--ink, #ece7d9); } .ds-verdict-odds { margin: 22px 0 0; font-family: 'Martian Mono', ui-monospace, monospace; font-size: 0.86rem; font-variant-numeric: tabular-nums; letter-spacing: 0.06em; line-height: 1.7; text-transform: uppercase; color: var(--ink-dim, #9aa2a4); } .ds-verdict-odds b { color: var(--ink, #ece7d9); font-weight: 700; } .ds-locked-stamp { position: absolute; top: 26px; right: 30px; display: inline-flex; align-items: center; padding: 7px 14px; border: 2px solid var(--signal, #f2560c); color: var(--signal, #f2560c); font-family: 'Saira Stencil One', 'Archivo', sans-serif; font-size: 13px; letter-spacing: 0.18em; line-height: 1.2; text-transform: uppercase; transform: rotate(-3deg); }"
+    },
+    {
+      "name": "Marker",
+      "kind": "custom",
+      "refersTo": "pull",
+      "description": "The fixed 2px orange blade the reel travels under, capped with a CSS-border triangle at each end. It never moves; the reel moves under it.",
+      "html": "<div class=\"ds-marker-well\"><div class=\"ds-marker\"></div></div>",
+      "css": ".ds-marker-well { position: relative; height: 180px; background: var(--steel-900, #0d1012); border-top: 1px solid var(--hairline-soft, #2b3237); border-bottom: 1px solid var(--hairline-soft, #2b3237); box-shadow: 0 18px 44px rgba(0,0,0,0.55) inset; } .ds-marker { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; transform: translateX(-1px); background: linear-gradient(180deg, rgba(242,86,12,0.85) 0%, rgba(242,86,12,0.22) 46%, rgba(242,86,12,0.85) 100%); } .ds-marker::before, .ds-marker::after { content: ''; position: absolute; left: 50%; width: 0; height: 0; border-left: 9px solid transparent; border-right: 9px solid transparent; transform: translateX(-50%); } .ds-marker::before { top: 0; border-top: 13px solid var(--signal, #f2560c); } .ds-marker::after { bottom: 0; border-bottom: 13px solid var(--signal, #f2560c); }"
+    },
+    {
+      "name": "Sound Toggle",
+      "kind": "nav",
+      "refersTo": "sound-toggle",
+      "description": "The header's only control: a steel plate with an inline speaker mark and a round indicator lamp that lights signal orange when on. Below 720px the words drop and the lamp carries the state.",
+      "html": "<button class=\"ds-sound-toggle\" aria-pressed=\"true\" aria-label=\"Sound on\"><span class=\"ds-sound-lamp\"></span><svg width=\"13\" height=\"13\" viewBox=\"0 0 13 13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M2 5h2.2L7 2.6v7.8L4.2 8H2z\" stroke-linejoin=\"round\"/><path d=\"M9.2 4.4a3.1 3.1 0 0 1 0 4.2\" stroke-linecap=\"round\"/></svg><span class=\"ds-sound-text\">Sound on</span></button>",
+      "css": ".ds-sound-toggle { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--hairline, #3d464d); border-radius: 0; background: var(--steel-700, #1f2429); color: var(--ink-dim, #9aa2a4); font-family: 'Saira Stencil One', 'Archivo', sans-serif; font-size: 12px; letter-spacing: 0.18em; line-height: 1.2; text-transform: uppercase; white-space: nowrap; cursor: pointer; box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 2px 5px rgba(0,0,0,0.5); transition: color 140ms ease, border-color 140ms ease; } .ds-sound-toggle:hover { color: var(--ink, #ece7d9); border-color: var(--steel-500, #333b42); } .ds-sound-toggle[aria-pressed='true'] { color: var(--ink, #ece7d9); } .ds-sound-toggle:focus-visible { outline: 2px solid var(--signal, #f2560c); outline-offset: 3px; } .ds-sound-lamp { width: 7px; height: 7px; border-radius: 50%; background: var(--steel-500, #333b42); box-shadow: 0 1px 2px rgba(0,0,0,0.6) inset; } .ds-sound-toggle[aria-pressed='true'] .ds-sound-lamp { background: var(--signal, #f2560c); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Ordnance Crate",
+    "overview": "DopeChaser is one continuous fabricated object, not a page with widgets on it. The screen is the lid, the seam, the reel band, the readout strip and the control rail of a single steel case, stacked full-bleed from the top edge to the bottom with nothing behind them. There is no background the machine floats on; every surface is a part of the crate, and the seams between parts are scored hairlines rather than gaps. Depth comes from milled bevels, inset shadows and painted markings, never from luminance.\n\nThe material is gunmetal - a seven-step near-neutral steel ramp so tight that the whole surface reads as one alloy under a single light, lit from above by a 4% white wash at the top and pooled into a 40% black at the bottom. Lettering is bone, not white: a warm off-cream that reads as paint applied to metal. The one saturated voice is a signal orange belonging to the machine itself, and beside it a four-stop painted odds ramp that is data, not decoration. Nothing glows; there is not one blur, bloom or colored halo in the build, and the single filter that ships is a horizontal motion blur applied to the reel while it is genuinely moving fast.\n\nDensity is industrial: 11-12px monospaced figures, 12px stencil panel marks, hard uppercase, and one very large uppercase headline that only exists after the reel lands. The composition is calm at rest and violent for exactly one event. The rejected reference is the neon casino - no gradient rainbow, no confetti, no glass, no rounded chrome pill.",
+    "keyCharacteristics": [
+      "Full-bleed, edge-to-edge, zero page margin: the machine has no background.",
+      "Zero corner radius everywhere except a 7px round indicator lamp.",
+      "A seven-step gunmetal ramp plus warm bone ink; saturation is rationed.",
+      "One reserved signal orange; four semantic grade colors that are never decorative.",
+      "Variable-width Archivo, monospaced figures, stencil panel marks with a hard size floor.",
+      "Depth by bevel, inset shadow and hairline seam. No glow anywhere."
+    ],
+    "rules": [
+      {
+        "name": "The Signal Reserve Rule",
+        "body": "Signal orange belongs to the machine, never to content. Marker, primary action, keys, active detent, focus ring, selection. If a new element wants orange to mean \"good\", \"rare\" or \"won\", it is asking for the grade ramp instead and the answer is no.",
+        "section": "colors"
+      },
+      {
+        "name": "The Grade Triad Rule",
+        "body": "A grade color is never rendered in one place alone. Whenever --grade changes it must appear simultaneously on the band's 7px top rail, the readout's 9x9px legend swatch, and the verdict chip - all three transitioning together over 320ms. A grade color used as a lone accent is decoration and is forbidden; used in the triad it is a readout.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Glow Rule",
+        "body": "No box-shadow with a colored spread, no text-shadow, no bloom, no backdrop-filter. Depth is milled, not lit. Every shadow in the system is black at 0.4-0.7 alpha or a <=6% white inset hairline.",
+        "section": "colors"
+      },
+      {
+        "name": "The Stencil Floor Rule",
+        "body": "Saira Stencil One is never set below 12px. Below that the bridges in the letterforms stop resolving and the face is indistinguishable from a plain sans - the whole reason to load it is gone. If a label must be smaller than 12px, use the monospaced Figure role instead of shrinking the stencil.",
+        "section": "typography"
+      },
+      {
+        "name": "The Width Axis Rule",
+        "body": "Reach for Archivo's wdth axis before reaching for a new family or a new size. Wide (106-122) for identity and verdict, normal (100) for prose, condensed (76) for anything fitting a fixed-width plate.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Every digit that can change under the user is Martian Mono with font-variant-numeric: tabular-nums. Odds, counts and serials must not reflow horizontally when they update.",
+        "section": "typography"
+      },
+      {
+        "name": "The Milled Depth Rule",
+        "body": "Depth is expressed by gradient direction, a 1px lit top edge and an inset shadow - in that order. A drop shadow is only permitted when one machine part physically overlaps another.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Collapsing Riser Rule",
+        "body": "A hard offset shadow is legal only when it is the same paint's deep tone directly under its own face and it collapses to zero on press with a matching downward translate. A hard offset that never moves is decoration, not a control, and is forbidden.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Corner Stamp Rule",
+        "body": "A state mark is struck across a panel's corner, not stacked above its heading. Marks of this kind are absolutely positioned, outlined rather than filled, tilted 2-3 degrees, and must clear the heading's box at every width. The reading order inside a panel is fixed - data chip, then title - and state never inserts itself into it.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do build every new surface as another part of the same crate: full-bleed, hard-cornered, aligned to the shared --gutter, separated by a scored hairline rather than a gap.",
+      "Do reserve signal orange for the machine's own controls and indicators, and route any \"how rare is this\" meaning through the four-stop grade ramp.",
+      "Do move all three grade surfaces together - band rail, legend swatch, verdict chip - over 320ms whenever the pool changes.",
+      "Do set every changing number in Martian Mono with tabular figures.",
+      "Do reach for Archivo's width axis before adding a family or a size step.",
+      "Do keep Saira Stencil One at 12px or larger, always uppercase, always tracked at 0.16em or more.",
+      "Do express depth with a face gradient, a 1px lit top edge and an inset shadow, in that order.",
+      "Do shorten or swap content at 720px (compact lid legend, compact meta, lamp-only sound toggle) rather than shrinking the wide layout.",
+      "Do give any signature motion a two-phase overshoot-and-settle shape, and give it a discrete stepped equivalent under prefers-reduced-motion."
+    ],
+    "donts": [
+      "Don't introduce a corner radius. The only round object in the system is an indicator lamp.",
+      "Don't add glow: no colored shadow spread, no text-shadow, no bloom, no backdrop-filter. The one filter that ships is the horizontal reel streak, and it only exists while the reel is genuinely fast.",
+      "Don't use a grade color decoratively, in isolation, or on anything that is not a reading of the pool.",
+      "Don't use signal orange to encode value, rarity, or success.",
+      "Don't use pure white for text or borders; lettering is bone and highlights top out near 6% white.",
+      "Don't put a hard offset shadow under anything that doesn't collapse on press.",
+      "Don't let the reel band exceed 348px tall - past that the plates stop reading as a reel and start reading as columns.",
+      "Don't center a content column on a background. There is no background; a card floating in a margin breaks the object.",
+      "Don't add a decorative label above a heading. The verdict's grade chip is data and the tonight's-pick mark is a corner stamp; a text kicker above a title is not part of this system."
+    ]
+  }
+}
