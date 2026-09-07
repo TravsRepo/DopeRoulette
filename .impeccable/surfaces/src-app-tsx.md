@@ -7,7 +7,7 @@ related_targets: ["src/spin"]
 
 ## Scope
 
-The spin page — DopeChaser's only surface for now, and the whole product: pull, verdict, and the controls that shape the pool. Visitor mode: **Experience**. The machine is the artifact; the interface recedes around it.
+The spin page — DopeRoulette's only surface for now, and the whole product: pull, verdict, and the controls that shape the pool. Visitor mode: **Experience**. The machine is the artifact; the interface recedes around it.
 
 ## Audience and job
 

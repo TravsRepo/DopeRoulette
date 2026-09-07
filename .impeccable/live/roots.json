@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "appRoot": "/home/travis/dev/DopeChaser",
-  "repoRoot": "/home/travis/dev/DopeChaser",
-  "contextRoot": "/home/travis/dev/DopeChaser",
-  "sessionRoot": "/home/travis/dev/DopeChaser/.impeccable/live",
-  "productPath": "/home/travis/dev/DopeChaser/PRODUCT.md",
-  "designPath": "/home/travis/dev/DopeChaser/DESIGN.md",
+  "appRoot": "/home/travis/dev/DopeRoulette",
+  "repoRoot": "/home/travis/dev/DopeRoulette",
+  "contextRoot": "/home/travis/dev/DopeRoulette",
+  "sessionRoot": "/home/travis/dev/DopeRoulette/.impeccable/live",
+  "productPath": "/home/travis/dev/DopeRoulette/PRODUCT.md",
+  "designPath": "/home/travis/dev/DopeRoulette/DESIGN.md",
   "resolvedFrom": "cwd"
 }

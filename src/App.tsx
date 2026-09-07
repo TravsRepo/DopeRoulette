@@ -28,7 +28,7 @@ import {
 } from './machine/cylinder';
 import { useCylinder } from './machine/useCylinder';
 
-const PULLS_STORAGE = 'dopechaser.pulls';
+const SPINS_STORAGE = 'doperoulette.spins';
 
 /** Stable stock number per title, so a round always carries the same mark. */
 const GENRE_STOPS = genreStopsFor(CATALOG);
@@ -47,14 +47,14 @@ function useReducedMotion(): boolean {
 }
 
 function useNightTally(): [number, () => void] {
-  const [pulls, setPulls] = useState(0);
+  const [spins, setSpins] = useState(0);
 
   useEffect(() => {
     try {
-      const stored = window.sessionStorage.getItem(PULLS_STORAGE);
+      const stored = window.sessionStorage.getItem(SPINS_STORAGE);
       if (stored !== null) {
         const parsed = Number.parseInt(stored, 10);
-        if (Number.isFinite(parsed) && parsed >= 0) setPulls(parsed);
+        if (Number.isFinite(parsed) && parsed >= 0) setSpins(parsed);
       }
     } catch {
       // Blocked storage: the tally still counts for this page view.
@@ -62,10 +62,10 @@ function useNightTally(): [number, () => void] {
   }, []);
 
   const count = useCallback(() => {
-    setPulls((current) => {
+    setSpins((current) => {
       const next = current + 1;
       try {
-        window.sessionStorage.setItem(PULLS_STORAGE, String(next));
+        window.sessionStorage.setItem(SPINS_STORAGE, String(next));
       } catch {
         // Nothing to persist to.
       }
@@ -73,7 +73,7 @@ function useNightTally(): [number, () => void] {
     });
   }, []);
 
-  return [pulls, count];
+  return [spins, count];
 }
 
 function SoundMark({ on }: { on: boolean }) {
@@ -139,7 +139,7 @@ function Lever<T extends string | number>({
 export default function App() {
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
   const [soundOn, setSoundOn] = useState(true);
-  const [pulls, countPull] = useNightTally();
+  const [spins, countSpin] = useNightTally();
 
   const pool = useMemo(() => poolFor(CATALOG, settings), [settings]);
   const poolRef = useRef(pool);
@@ -148,7 +148,7 @@ export default function App() {
   const [chambers, setChambers] = useState<Chamber[]>(() => loadCylinder(pool));
   const [outcome, setOutcome] = useState<SpinOutcome | null>(null);
   const [settled, setSettled] = useState<Game | null>(null);
-  /** Spins since the rifle was last loaded. The levers lock after the first. */
+  /** Spins since the cylinder was last loaded. The levers lock after the first. */
   const [spinsThisLoad, setSpinsThisLoad] = useState(0);
 
   const reducedMotion = useReducedMotion();
@@ -174,7 +174,7 @@ export default function App() {
     [cylinder],
   );
 
-  // Before the first spin the rifle is not committed, so changing a lever
+  // Before the first spin the cylinder is not committed, so changing a lever
   // re-seats the opening rounds from the new pool rather than leaving titles
   // in the gun that the levers now exclude.
   const handleSettings = useCallback(
@@ -191,7 +191,7 @@ export default function App() {
   const handleSpin = useCallback(() => {
     if (cylinder.spinning || settled !== null || pool.length === 0) return;
     const index = spin();
-    countPull();
+    countSpin();
     setOutcome(null);
     setSpinsThisLoad((n) => n + 1);
 
@@ -207,7 +207,7 @@ export default function App() {
         setSettled(result.game);
       }
     });
-  }, [bench, chambers, countPull, cylinder, pool.length, settled]);
+  }, [bench, chambers, countSpin, cylinder, pool.length, settled]);
 
   const handlePlay = useCallback(() => {
     if (outcome && (outcome.kind === 'choice' || outcome.kind === 'forced')) {
@@ -242,7 +242,7 @@ export default function App() {
       <header className="manifest">
         <div className="manifest-left">
           <h1 className="wordmark">
-            Dope<span>Chaser</span>
+            Dope<span>Roulette</span>
           </h1>
         </div>
 
@@ -307,7 +307,7 @@ export default function App() {
               <p className="recovery">
                 Nothing seats {PLAYER_LABELS[settings.players]} for a{' '}
                 {settings.genre === 'ANY' ? 'game' : settings.genre.toLowerCase()} of this length.
-                Widen a lever below, then reload the rifle.
+                Widen a lever below, then load a fresh cylinder.
               </p>
             </div>
           ) : (
@@ -376,7 +376,7 @@ export default function App() {
                       ref={verdictRef}
                       onClick={() => reload()}
                     >
-                      Reload dope rifle
+                      Load a fresh cylinder
                     </button>
                   </div>
                 </div>
@@ -440,7 +440,7 @@ export default function App() {
         </span>
         <span>{describeSettings(settings)}</span>
         <span className="tally">
-          TONIGHT · <b>{pulls}</b> {pulls === 1 ? 'SPIN' : 'SPINS'}
+          TONIGHT · <b>{spins}</b> {spins === 1 ? 'SPIN' : 'SPINS'}
         </span>
       </div>
 
@@ -471,7 +471,7 @@ export default function App() {
             onChange={(length: LengthSetting) => handleSettings({ length })}
           />
           {leversLocked && settled === null && (
-            <p className="lever-lock stencil">Locked while the rifle is live</p>
+            <p className="lever-lock stencil">Locked while the cylinder is live</p>
           )}
         </div>
 
@@ -487,7 +487,7 @@ export default function App() {
               disabled={cylinder.spinning}
               onClick={() => reload()}
             >
-              Reload dope rifle
+              Load a fresh cylinder
             </button>
           )}
         </div>

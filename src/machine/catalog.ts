@@ -7,9 +7,9 @@
  * seatable rounds like anything else.
  *
  * The player counts and session lengths are broad-strokes values for shaping
- * the reel, not verified specifications. Keep the shape stable: `art` is the
- * slot artwork lands in later, and the reel already reserves room for it
- * without a redesign.
+ * the pool, not verified specifications. Keep the shape stable: `art` is the
+ * slot artwork lands in later, and nothing in the cylinder or the register
+ * needs a redesign to make room for it.
  */
 
 export type Genre = 'CO-OP' | 'VERSUS' | 'PARTY' | 'SOLO' | 'SANDBOX';

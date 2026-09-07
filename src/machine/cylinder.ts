@@ -2,8 +2,8 @@ import type { Game } from './catalog';
 import { randomIndex, sample } from './random';
 
 /**
- * The rifle. Ten chambers, three of them loaded to start, and a gun that only
- * ever gets hotter: every spin that finds an empty chamber loads it.
+ * The cylinder. Ten chambers, three of them loaded to start, and a gun that
+ * only ever gets hotter: every spin that finds an empty chamber loads it.
  *
  * A round you have already refused is racked — it sits red in the chamber, and
  * landing on it a second time is the end of the argument.

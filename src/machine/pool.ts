@@ -4,7 +4,7 @@ import type { Game, Genre } from './catalog';
  * The machine's controls and the arithmetic behind the readout.
  *
  * Nothing here invents a property of a game. The only thing the verdict
- * claims about a title is how improbable the pull was, and that is computed
+ * claims about a title is how improbable the spin was, and that is computed
  * from the live pool: odds = 1 / pool size.
  */
 
@@ -83,7 +83,7 @@ export interface Grade {
 
 /**
  * The grade is a reading of the odds, not a property of the game. Narrow the
- * pool and every pull out of it gets more common — which is the honest trade
+ * pool and every spin out of it gets more common — which is the honest trade
  * the controls are making, made visible. The bands are cut to the size of the
  * catalog, so a wide-open pool still reads as the long shot it is.
  */

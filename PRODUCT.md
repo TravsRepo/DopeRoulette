@@ -10,7 +10,7 @@ web
 
 Fully static, no web server, no backend runtime — the site must deploy as plain files to any static host. Confirmed by the user, along with the requirement that the UI be rich, highly interactive, and animated.
 
-Framework choice was delegated: **Vite + TypeScript + React**, building to static output. Rationale: the catalog is a build-time JSON asset that a bundler can type-check and inline; React carries the catalog/filter/spin state without a server; and the static build satisfies the deploy constraint. The slot-machine motion itself is bespoke (CSS transforms / Web Animations API), not a general animation framework. Since this was delegated rather than specified, it is revisable before the first build lands.
+Framework choice was delegated: **Vite + TypeScript + React**, building to static output. Rationale: the catalog is a build-time JSON asset that a bundler can type-check and inline; React carries the catalog/filter/spin state without a server; and the static build satisfies the deploy constraint. The cylinder motion itself is bespoke (CSS transforms / Web Animations API), not a general animation framework. Since this was delegated rather than specified, it is revisable before the first build lands.
 
 ## Users
 
@@ -22,20 +22,20 @@ The job: end the "what should we play?" stall. Not by producing a recommendation
 
 ## Product Purpose
 
-DopeChaser picks a video game to play, at random, through a slot-machine spin. The user pulls; the reels run; a game lands.
+DopeRoulette picks a video game to play, at random, through a spin of a loaded cylinder. The user spins; the cylinder runs; a round comes up under the hammer.
 
 Success is that the group actually plays the game that came up. The spin has to feel consequential enough that the result carries authority — a plain "here's a random game" button fails this even though it computes the same answer.
 
 ## Positioning
 
-The mechanic *is* the product. Randomness is trivial to compute; the gamble is what a neighboring "random game picker" cannot truthfully copy — the pull, the reels, the near-miss, the moment the result locks. DopeChaser sells the theater of chance, and the theater is what makes the outcome binding instead of just advisory.
+The mechanic *is* the product. Randomness is trivial to compute; the gamble is what a neighboring "random game picker" cannot truthfully copy — the spin, the cylinder, the near-miss, the moment the result locks. DopeRoulette sells the theater of chance, and the theater is what makes the outcome binding instead of just advisory.
 
 ## Operating Context
 
 - One screen, one spin, watched by everyone present. The result must be legible from across a room, not just to the person holding the mouse.
 - Browser only. Desktop/TV-scale viewing and phone-in-hand use are both real.
-- The moment is short and social. Repeat spins are expected — people will pull again, and the design has to have a stance on that.
-- The catalog is maintained out-of-band by the site admin. Users never curate it; they arrive to a reel that is already loaded.
+- The moment is short and social. Repeat spins are expected — people will spin again, and the design has to have a stance on that.
+- The catalog is maintained out-of-band by the site admin. Users never curate it; they arrive to a cylinder that is already loaded.
 
 ## Capabilities and Constraints
 
@@ -46,14 +46,14 @@ The mechanic *is* the product. Randomness is trivial to compute; the gamble is w
 - Group play needs no networking — a single device serves the whole group.
 
 **Open / undecided (do not invent answers):**
-- Whether users can narrow the reel before spinning (by player count, genre, platform, playtime) or only pull from the full catalog.
+- Whether users can narrow the pool before spinning (by player count, genre, platform, playtime) or only pull from the full catalog.
 - Whether a spin result can be rejected/re-rolled, and whether the product takes a position on re-rolling.
 - What a catalog entry contains beyond a title — art, player count, platform, store links are all unresolved until the sync scripts define the source.
-- Catalog size and scope (a tight curated set vs. thousands of titles) — this materially changes the reel design and is not yet decided.
+- Catalog size and scope (a tight curated set vs. thousands of titles) — this materially changes the cylinder design and is not yet decided.
 
 ## Brand Commitments
 
-The name **DopeChaser** and its slot-machine/gambling premise. No logo, wordmark, palette, typography, or voice has been established or made binding.
+The name **DopeRoulette** and its revolver-roulette gambling premise. No logo, wordmark, palette, typography, or voice has been established or made binding.
 
 ## Evidence on Hand
 
@@ -66,7 +66,7 @@ Future work must not fabricate: game titles or metadata presented as a real cata
 1. **The spin is the product.** Any change that makes the outcome arrive faster or more soberly, at the cost of the gamble, is a regression.
 2. **The verdict must feel binding.** The design's job is to make the result land with enough authority that the group stops deliberating.
 3. **Readable across the room.** Every state that matters to a group — spinning, landing, landed — reads at a distance and from a phone.
-4. **Zero setup before the first pull.** A stranger with no account and no list of their own can spin within seconds of arriving.
+4. **Zero setup before the first spin.** A stranger with no account and no list of their own can spin within seconds of arriving.
 5. **Static forever.** No feature may quietly require a server; the catalog is data in the repo, and the browser is the whole runtime.
 
 ## Accessibility & Inclusion

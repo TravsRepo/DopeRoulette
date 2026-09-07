@@ -1,5 +1,5 @@
 ---
-name: DopeChaser
+name: DopeRoulette
 description: An ordnance crate that opens one title at a time — gunmetal steel, stencil bone ink, a painted odds ramp, and one orange signal.
 colors:
   steel-900: "#0d1012"
@@ -122,13 +122,13 @@ components:
     padding: "10px 14px"
 ---
 
-# Design System: DopeChaser
+# Design System: DopeRoulette
 
 ## Overview
 
 **Creative North Star: "The Ordnance Crate"**
 
-DopeChaser is one continuous fabricated object, not a page with widgets on it. The screen is the lid, the seam, the reel band, the readout strip and the control rail of a single steel case, stacked full-bleed from the top edge to the bottom with nothing behind them. There is no background the machine floats on; every surface is a part of the crate, and the seams between parts are scored hairlines rather than gaps. Depth comes from milled bevels, inset shadows and painted markings, never from luminance.
+DopeRoulette is one continuous fabricated object, not a page with widgets on it. The screen is the lid, the seam, the reel band, the readout strip and the control rail of a single steel case, stacked full-bleed from the top edge to the bottom with nothing behind them. There is no background the machine floats on; every surface is a part of the crate, and the seams between parts are scored hairlines rather than gaps. Depth comes from milled bevels, inset shadows and painted markings, never from luminance.
 
 The material is gunmetal — a seven-step near-neutral steel ramp so tight that the whole surface reads as one alloy under a single light, lit from above by a 4% white wash at the top and pooled into a 40% black at the bottom. Lettering is bone, not white: a warm off-cream that reads as paint applied to metal. The one saturated voice is a signal orange belonging to the machine itself, and beside it a four-stop painted odds ramp that is data, not decoration. Nothing glows; there is not one blur, bloom or colored halo in the build, and the single filter that ships is a horizontal motion blur applied to the reel while it is genuinely moving fast.
 

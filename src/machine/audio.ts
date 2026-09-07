@@ -1,7 +1,7 @@
 /**
  * The machine's own noises. Built from oscillators rather than shipped audio
  * files so the site stays a pile of static text, and only ever started from a
- * real user gesture (the pull).
+ * real user gesture (the spin).
  */
 
 let ctx: AudioContext | null = null;
@@ -17,7 +17,7 @@ function context(): AudioContext | null {
   return ctx;
 }
 
-/** A detent passing the marker. Pitch drifts so a fast reel does not buzz. */
+/** A chamber passing the hammer. Pitch drifts so a fast cylinder does not buzz. */
 export function tick(intensity: number): void {
   const ac = context();
   if (!ac) return;
@@ -39,7 +39,7 @@ export function tick(intensity: number): void {
   osc.stop(now + 0.05);
 }
 
-/** The latch dropping when the reel finally sits still. */
+/** The latch dropping when the cylinder finally sits still. */
 export function landing(): void {
   const ac = context();
   if (!ac) return;
